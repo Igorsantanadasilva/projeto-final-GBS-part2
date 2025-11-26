@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Confirmada - GBS Madeiras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    
+    <header>
+        <h1>GBS Madeiras</h1>
+        <img src="gbsm.jpg" alt="GBS Madeiras">
+        <p>Comércio de Móveis Madeiras e Artefatos</p>
+    </header>
+
+    
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="contato.html">Contato</a>
+        <a href="pedido.html">Encomenda</a>
+    </nav>
+
+    
+    <div class="container">
+        <section id="confirmacao">
+            <h2>Compra Confirmada</h2>
+
+            <div id="detalhes-compra">
+                <h3>Resumo da Compra</h3>
+                <p><strong>Produto:</strong> <span id="produto-nome">-</span></p>
+                <p><strong>Quantidade:</strong> <span id="produto-quantidade">-</span></p>
+                <p><strong>Preço Total:</strong> <span id="produto-total">R$ 0,00</span></p>
+            </div>
+
+            <div id="detalhes-entrega">
+                <h3>Dados de Entrega</h3>
+                <p><strong>Nome Completo:</strong> <span id="nome"></span></p>
+                <p><strong>E-mail:</strong> <span id="email"></span></p>
+                <p><strong>Endereço:</strong> <span id="endereco"></span></p>
+                <p><strong>Telefone:</strong> <span id="telefone"></span></p>
+                <p><strong>Forma de Pagamento:</strong> <span id="pagamento"></span></p>
+            </div>
+
+            <div id="mensagem">
+                <p>Obrigado pela sua compra! Em breve, você receberá mais informações sobre o envio do seu pedido.</p>
+            </div>
+
+            <div id="finalizar">
+                <button onclick="window.location.href='index.html';">Voltar à Página Inicial</button>
+                <button onclick="window.location.href='pedido.html';">Fazer Nova Compra</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 GBS Madeiras - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        
+        const produto = params.get('produto');
+        const quantidade = params.get('quantidade');
+        const preco = {
+            "Madeira de Pinus": 15.00,
+            "Madeira de Eucalipto": 18.00,
+            "Madeira de Teca": 45.00,
+            
+        };
+
+        document.getElementById('produto-nome').textContent = produto;
+        document.getElementById('produto-quantidade').textContent = quantidade;
+        const total = preco[produto] * parseInt(quantidade);
+        document.getElementById('produto-total').textContent = `R$ ${total.toFixed(2)}`;
+
+        
+        document.getElementById('nome').textContent = params.get('nome');
+        document.getElementById('email').textContent = params.get('email');
+        document.getElementById('endereco').textContent = params.get('endereco');
+        document.getElementById('telefone').textContent = params.get('telefone');
+        document.getElementById('pagamento').textContent = params.get('formapagamento');
+    </script>
+
+</body>
+</html>

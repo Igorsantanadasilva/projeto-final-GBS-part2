@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - GBS Madeiras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+   
+    <header>
+        <h1>GBS Madeiras</h1>
+        <img src="gbsm.jpg" alt="GBS Madeiras">
+        <p>Comércio de Móveis Madeiras e Artefatos</p>
+    </header>
+
+    
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="contato.html">Contato</a>
+        <a href="pedido.html">Encomenda</a>
+    </nav>
+
+    
+    <div class="container">
+        <section id="finalizar">
+            <h2>Finalizar Compra</h2>
+
+            
+            <div id="detalhes-compra">
+                <h3>Resumo da Compra</h3>
+                <p><strong>Produto:</strong> 
+                    <select id="produto-selecionado">
+                        <option value="Madeira de Pinus">Madeira de Pinus</option>
+                        <option value="Madeira de Eucalipto">Madeira de Eucalipto</option>
+                        <option value="Madeira de Teca">Madeira de Teca</option>
+                        <option value="Madeira de Jatobá">Madeira de Jatobá</option>
+                        <option value="Madeira de Angelim">Madeira de Angelim</option>
+                        <option value="Madeira de Cedro">Madeira de Cedro</option>
+                        <option value="Madeira de Cumaru">Madeira de Cumaru</option>
+                        <option value="Madeira de Itaúba">Madeira de Itaúba</option>
+                        <option value="Madeira de Freijó">Madeira de Freijó</option>
+                        <option value="Madeira de Caviúna">Madeira de Caviúna</option>
+                        <option value="Madeira de Peroba">Madeira de Peroba</option>
+                        <option value="Madeira de Massaranduba">Madeira de Massaranduba</option>
+                        <option value="Madeira de Mogno">Madeira de Mogno</option>
+                        <option value="Madeira de Roxinho">Madeira de Roxinho</option>
+                        <option value="Madeira de Sucupira">Madeira de Sucupira</option>
+                        <option value="Madeira de Aroeira">Madeira de Aroeira</option>
+                        <option value="Tábua de Pinus">Tábua de Pinus</option>
+                        <option value="Tábua de Eucalipto">Tábua de Eucalipto</option>
+                    </select>
+                </p>
+                <p><strong>Quantidade:</strong> 
+                    <input type="number" id="quantidade-input" value="1" min="1" required>
+                </p>
+                <p><strong>Preço Total:</strong> <span id="produto-total">R$ 0,00</span></p>
+            </div>
+
+           
+            <form id="form-compra" action="confirmacao.html" method="GET">
+                <h3>Dados de Entrega</h3>
+                
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+                
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="endereco">Endereço de Entrega:</label>
+                <textarea id="endereco" name="endereco" required></textarea>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+                
+                <label for="formapagamento">Forma de Pagamento:</label>
+                <select id="formapagamento" name="formapagamento" required>
+                    <option value="boleto">Boleto Bancário</option>
+                    <option value="cartao">Cartão de Crédito</option>
+                    <option value="pix">Pix</option>
+                </select>
+
+                <input type="hidden" id="produto" name="produto" value="">
+                <input type="hidden" id="quantidade" name="quantidade" value="">
+
+                <div id="finalizar-compra">
+                    <button type="submit">Confirmar Compra</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    
+    <footer>
+        <p>&copy; 2025 GBS Madeiras - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        
+        function getPreco(produto) {
+            switch (produto) {
+                case "Madeira de Pinus":
+                    return 15.00;
+                case "Madeira de Eucalipto":
+                    return 18.00;
+                case "Madeira de Teca":
+                    return 45.00;
+                case "Madeira de Jatobá":
+                    return 50.00;
+                case "Madeira de Angelim":
+                    return 35.00;
+                case "Madeira de Cedro":
+                    return 30.00;
+                case "Madeira de Cumaru":
+                    return 60.00;
+                case "Madeira de Itaúba":
+                    return 40.00;
+                case "Madeira de Freijó":
+                    return 25.00;
+                case "Madeira de Caviúna":
+                    return 70.00;
+                case "Madeira de Peroba":
+                    return 28.00;
+                case "Madeira de Massaranduba":
+                    return 55.00;
+                case "Madeira de Mogno":
+                    return 150.00;
+                case "Madeira de Roxinho":
+                    return 85.00;
+                case "Madeira de Sucupira":
+                    return 45.00;
+                case "Madeira de Aroeira":
+                    return 38.00;
+                case "Tábua de Pinus":
+                    return 20.00;
+                case "Tábua de Eucalipto":
+                    return 22.00;
+                default:
+                    return 0;
+            }
+        }
+
+       
+        function atualizarPreco() {
+            let produto = document.getElementById('produto-selecionado').value;
+            let quantidade = parseInt(document.getElementById('quantidade-input').value);
+            let preco = getPreco(produto);
+            let total = preco * quantidade;
+            document.getElementById('produto-total').textContent = `R$ ${total.toFixed(2)}`;
+            document.getElementById('produto').value = produto;
+            document.getElementById('quantidade').value = quantidade;
+        }
+
+        
+        window.onload = function() {
+            atualizarPreco();
+        }
+
+        
+        document.getElementById('produto-selecionado').addEventListener('change', function() {
+            atualizarPreco();
+        });
+
+        
+        document.getElementById('quantidade-input').addEventListener('input', function() {
+            atualizarPreco();
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
